@@ -54,7 +54,7 @@ temp_dir="./video_input/${content_filename}"
 mkdir -p "$temp_dir"
 
 # Save frames of the video as individual image files
-$FFMPEG -v quiet -i "$1" "${temp_dir}/frame_%04d.ppm"
+$FFMPEG -v quiet -i "$1" -r 1 "${temp_dir}/frame_%04d.ppm"
 eval $(ffprobe -v error -of flat=s=_ -select_streams v:0 -show_entries stream=width,height "$1")
 width="${streams_stream_0_width}"
 height="${streams_stream_0_height}"
